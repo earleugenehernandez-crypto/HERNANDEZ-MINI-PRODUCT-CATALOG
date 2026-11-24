@@ -28,7 +28,7 @@ function ProductCard({
       <button
         type="button"
         className="product-card__button"
-        onClick={onAddToCart}
+        onClick={() => onAddToCart(title)}
         disabled={!inStock}
       >
         Add to Cart
