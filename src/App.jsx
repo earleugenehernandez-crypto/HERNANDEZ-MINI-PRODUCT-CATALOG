@@ -14,7 +14,7 @@ function App() {
 
   return (
     <main className="catalog">
-      <h1>Mini Product Catalog</h1>
+      <h1>CvSU Mini Store</h1>
       <p className="catalog__message" role="status">
         {cartCount === 0
           ? 'Your cart is empty.'
