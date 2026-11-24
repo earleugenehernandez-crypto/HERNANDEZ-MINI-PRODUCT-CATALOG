@@ -4,20 +4,22 @@ import products from './data/products'
 import './App.css'
 
 function App() {
-  const [cartMessage, setCartMessage] = useState('')
+  const [cartCount, setCartCount] = useState(0)
+  const [lastAdded, setLastAdded] = useState('')
 
   function handleAddToCart(title) {
-    setCartMessage(`${title} added to cart`)
+    setCartCount((count) => count + 1)
+    setLastAdded(title)
   }
 
   return (
     <main className="catalog">
       <h1>Mini Product Catalog</h1>
-      {cartMessage && (
-        <p className="catalog__message" role="status">
-          {cartMessage}
-        </p>
-      )}
+      <p className="catalog__message" role="status">
+        {cartCount === 0
+          ? 'Your cart is empty.'
+          : `Items added to cart: ${cartCount} (Last added: ${lastAdded})`}
+      </p>
 
       <section className="catalog__grid">
         {products.map((product) => (
@@ -29,7 +31,8 @@ function App() {
             inStock={product.inStock}
             onAddToCart={handleAddToCart}
           >
-            {product.id === 2 ? 'Sale' : product.id === 5 ? 'New' : null}
+            {product.id === 2 && <span>Sale</span>}
+            {product.id === 5 && <span>New</span>}
           </ProductCard>
         ))}
       </section>
